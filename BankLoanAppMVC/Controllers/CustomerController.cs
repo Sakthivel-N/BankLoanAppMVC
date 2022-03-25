@@ -48,9 +48,6 @@ namespace BankLoanAppMVC.Controllers
             }
 
 
-
-
-
         }
 
         public ActionResult Register()
@@ -97,7 +94,7 @@ namespace BankLoanAppMVC.Controllers
 
             if (ModelState.IsValid)
             {
-                loan.CustomerID = Convert.ToInt16(Session["UserID"]);
+                loan.CustomerID = Convert.ToInt32(Session["UserID"]);
                 loan.Status = "OnProgress..!!";
                 db.Loans.Add(loan);
                 db.SaveChanges();

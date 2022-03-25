@@ -11,7 +11,7 @@ namespace BankLoanAppMVC.Controllers
 {
     public class AdminController : Controller
     {
-        private AppDBContext db= new AppDBContext();
+        private AppDBContext db = new AppDBContext();
         // GET: Admin
         public ActionResult Index()
         {
@@ -23,51 +23,43 @@ namespace BankLoanAppMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Admin admins )
+        public ActionResult Login(Admin admins)
         {
-            if (Session["UserID"] != null)
+
+
+            var obj = db.Admins
+                    .Where(a => a.AdminName.Trim() == admins.AdminName &&
+                                a.Password.Trim() == admins.Password).FirstOrDefault();
+
+            if (obj != null)
             {
-                var obj = db.Admins
-                        .Where(a => a.AdminName.Trim() == admins.AdminName &&
-                                    a.Password.Trim() == admins.Password).FirstOrDefault();
-
-                if (obj != null)
-                {
-                    Session["UserID"] = obj.AdminName.ToString();
+                Session["AdminName"] = obj.AdminName.ToString();
 
 
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ViewBag.Message = "User not found for given Email and Password";
-                    return View();
-                }
-
+                return RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("Index","Admin");
+                ViewBag.Message = "User not found for given Email and Password";
+                return View();
             }
 
+        
+            
+            
+
+    }
 
             
-        }
+        
         
 
 
         public ActionResult ChangeStatus()
         {
-            if (Session["UserID"] != null)
-            {
+            
                 return View(db.Loans.ToList());
 
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-            
         }
 
         public ActionResult Edit(int? id)
@@ -130,7 +122,11 @@ namespace BankLoanAppMVC.Controllers
 
         public ActionResult ViewCustomers()
         {
-            return View(db.Customers.ToList());
+            
+            
+                return View(db.Customers.ToList());
+            
+            
         }
 
         public ActionResult Delete(int? id)

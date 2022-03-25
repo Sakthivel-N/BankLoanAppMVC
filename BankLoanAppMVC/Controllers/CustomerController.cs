@@ -38,8 +38,8 @@ namespace BankLoanAppMVC.Controllers
                 Session["UserID"] = obj.CustomerID.ToString();
                 Session["Email"] = obj.Email.ToString();
                 idval = Convert.ToInt16(Session["UserID"]);
-
-                return RedirectToAction("Index", "Customer");
+                ViewBag.Message = "Login Successfully.!";
+                return View();
             }
             else
             {
@@ -66,7 +66,7 @@ namespace BankLoanAppMVC.Controllers
                 db.Customers.Add(user);
                 db.SaveChanges();
                 ViewBag.Message = "Registered Successfully";
-                return RedirectToAction("Index");
+                return View();
             }
 
             return View();
@@ -99,7 +99,7 @@ namespace BankLoanAppMVC.Controllers
                 db.Loans.Add(loan);
                 db.SaveChanges();
                 ViewBag.Message = "Applied Successfully";
-                return RedirectToAction("Index");
+                return View();
             }
 
             return View();

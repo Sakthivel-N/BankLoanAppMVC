@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{ if (Session["Email"] != null)
+@{ if (Session["AdminName"] != null)
     {
         <h2>
-            Welcome @Session["Email"].ToString() - DashBoard
+            Welcome @Session["AdminName"].ToString() - DashBoard
         </h2>}
     else
     {

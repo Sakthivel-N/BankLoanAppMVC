@@ -34,9 +34,9 @@ namespace BankLoanAppMVC.Controllers
             if (obj != null)
             {
                 Session["AdminName"] = obj.AdminName.ToString();
+                ViewBag.Message = "Login Successfully.!";
 
-
-                return RedirectToAction("Index");
+                return View();
             }
             else
             {
@@ -57,8 +57,18 @@ namespace BankLoanAppMVC.Controllers
 
         public ActionResult ChangeStatus()
         {
-            
+            if (Session["AdminName"] == null)
+            {
+                
+                return RedirectToAction("Index");
+            }
+            else
+            {
                 return View(db.Loans.ToList());
+
+            }
+            
+            
 
         }
 
@@ -122,9 +132,18 @@ namespace BankLoanAppMVC.Controllers
 
         public ActionResult ViewCustomers()
         {
-            
-            
+            if (Session["AdminName"] == null)
+            {
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
                 return View(db.Customers.ToList());
+
+            }
+
+            
             
             
         }

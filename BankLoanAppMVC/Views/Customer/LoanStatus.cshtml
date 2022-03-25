@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BankLoanAppMVC.Models.Loan>
+    @{
+        ViewBag.Title = "LoanStatus";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        int sessionval = Convert.ToInt16(Session["UserID"]);
+    }
+
+    <h2>LoanStatus</h2>
+
+     
+    @foreach (var item in Model)
+    {
+        if (item.CustomerID == sessionval)
+        {
+            <table>
+            <tr>
+                <td>
+                    <b>Customer Email</b>
+                </td>
+                <td>
+                    @Session["Email"].ToString();
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>
+                        Vehicle Model
+                    </b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleBrand)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>
+                        VehicleModel
+                    </b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleModel)
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>OnRoadPrice</b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OnRoadPrice)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Status
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        </table>            
+
+        }
+    }

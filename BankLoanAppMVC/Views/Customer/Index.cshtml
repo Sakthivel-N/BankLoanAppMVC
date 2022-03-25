@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@{ if (Session["Email"] != null)
+    {
+        <h2>
+            Welcome @Session["Email"].ToString() - Customer DashBoard
+        </h2>}
+    else
+    {
+        <h2>
+            Welcome User - Customer DashBoard
+        </h2>
+
+    }
+}
+
+<table>
+    <tr><th>@Html.ActionLink("Login here", "Login")</th></tr>
+    <tr><th>@Html.ActionLink("Registering", "Register")</th></tr>
+    <tr><th>@Html.ActionLink("Loan Apply", "LoanApply")</th></tr>
+    <tr><th>@Html.ActionLink("Loan Status", "LoanStatus")|</th></tr>
+</table>

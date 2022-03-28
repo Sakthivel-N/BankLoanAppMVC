@@ -28,30 +28,48 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleBrand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleModel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OnRoadPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Approve", "Edit", new { id=item.LoanID }) |
-            @Html.ActionLink("Decline", "Decline", new { id=item.LoanID }) |
-           
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleBrand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnRoadPrice)
+            </td>
+            @{ if (item.Status == "Approved")
+                {
+                    <td style="color:green">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
+                else if (item.Status == "Declined")
+                {
+                    <td style="color:red">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
+
+                else
+                {
+                    <td style="color: orange">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
+            }
+
+            <td>
+                @Html.ActionLink("Approve", "Edit", new { id = item.LoanID }) |
+                @Html.ActionLink("Decline", "Decline", new { id = item.LoanID }) |
+
+            </td>
+        </tr>
+    }
 
 </table>

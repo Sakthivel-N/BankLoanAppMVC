@@ -39,6 +39,7 @@ namespace BankLoanAppMVC.Controllers
                 Session["Email"] = obj.Email.ToString();
                 idval = Convert.ToInt16(Session["UserID"]);
                 ViewBag.Message = "Login Successfully.!";
+                ViewBag.LogMsg = null;
                 return View();
             }
             else
@@ -129,8 +130,11 @@ namespace BankLoanAppMVC.Controllers
         {
             if (Session["Email"] != null)
             {
+                ViewBag.LogMsg = Session["Email"].ToString();
                 Session.Clear();
-                
+
+                return View();
+
             }
             return RedirectToAction("Index");
         }

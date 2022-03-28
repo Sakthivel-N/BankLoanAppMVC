@@ -35,7 +35,7 @@ namespace BankLoanAppMVC.Controllers
             {
                 Session["AdminName"] = obj.AdminName.ToString();
                 ViewBag.Message = "Login Successfully.!";
-
+                ViewBag.LogAdmMsg =null;
                 return View();
             }
             else
@@ -182,7 +182,10 @@ namespace BankLoanAppMVC.Controllers
         {
             if (Session["AdminName"] != null)
             {
+                ViewBag.LogAdmMsg = Session["AdminName"].ToString();
                 Session.Clear();
+                return View();
+                
 
             }
             return RedirectToAction("Index");

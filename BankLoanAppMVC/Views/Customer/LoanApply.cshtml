@@ -49,10 +49,10 @@
             <input type="submit" value="LoanApply" class="btn btn-default" />
         </div>
     </div>
-    if (@ViewBag.Message != null)
+    @if (@ViewBag.Message != null)
     {
-    <div style="border: 1px solid red">
-        @ViewBag.Message
+    <div style="color:green">
+        <h2>@ViewBag.Message</h2>
     </div>
     }
 </div>

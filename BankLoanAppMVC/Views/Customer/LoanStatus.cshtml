@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<BankLoanAppMVC.Models.Loan>
-    @{
-        ViewBag.Title = "LoanStatus";
-        Layout = "~/Views/Shared/_Customer.cshtml";
-        int sessionval = Convert.ToInt16(Session["UserID"]);
-    }
+@{
+    ViewBag.Title = "LoanStatus";
+    Layout = "~/Views/Shared/_Customer.cshtml";
+    int sessionval = Convert.ToInt16(Session["UserID"]);
+}
 
-    <h2>LoanStatus</h2>
+<h2>LoanStatus</h2>
 
-     
-    @foreach (var item in Model)
+
+@foreach (var item in Model)
+{
+    if (item.CustomerID == sessionval)
     {
-        if (item.CustomerID == sessionval)
-        {
-            <table>
+        <table>
             <tr>
                 <td>
-                    <b>Customer Email</b>
+                    <b>Customer Email--</b>
                 </td>
                 <td>
                     @Session["Email"].ToString();
@@ -54,11 +54,28 @@
                 <td>
                     Status
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-            </tr>
-        </table>            
+                @{ if (item.Status == "Approved")
+                    {
+                        <td style="color:green">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    }
+                    else if (item.Status == "Declined")
+                    {
+                        <td style="color:red">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    }
 
-        }
+                    else
+                    {
+                        <td style="color:orange">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    }
+                }
+            </tr>
+        </table>
+
     }
+}

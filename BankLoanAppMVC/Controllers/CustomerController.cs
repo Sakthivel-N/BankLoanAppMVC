@@ -125,6 +125,16 @@ namespace BankLoanAppMVC.Controllers
 
         }
 
+        public ActionResult Logout()
+        {
+            if (Session["Email"] != null)
+            {
+                Session.Clear();
+                
+            }
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

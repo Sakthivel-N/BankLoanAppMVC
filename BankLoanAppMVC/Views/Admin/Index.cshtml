@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
 @{ if (Session["AdminName"] != null)
@@ -18,10 +18,5 @@
     }
 }
 
-<table>
-    <tr><th>@Html.ActionLink("Login here", "Login")</th></tr>
-    <tr><th>@Html.ActionLink("Loan Req Handler", "ChangeStatus")</th></tr>
-    <tr><th>@Html.ActionLink("View Customers", "ViewCustomers")</th></tr>
-    
-</table>
+
 

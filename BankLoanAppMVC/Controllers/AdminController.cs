@@ -178,7 +178,15 @@ namespace BankLoanAppMVC.Controllers
 
             return RedirectToAction("ViewCustomers");
         }
+        public ActionResult Logout()
+        {
+            if (Session["AdminName"] != null)
+            {
+                Session.Clear();
 
+            }
+            return RedirectToAction("Index");
+        }
 
 
     }
